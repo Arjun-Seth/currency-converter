@@ -1,4 +1,4 @@
-const BASE_URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+const BASE_URL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
 
 const dropdowns = document.querySelectorAll('.dropdown select');
 const btn = document.querySelector('form button');
@@ -51,11 +51,19 @@ const updateExchangeRate = async () => {
 
     // console.log(fromCurr.value, toCurr.value);
 
-    const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+    // const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+
+    // const response = await fetch(URL);
+    // let data = await response.json();
+    // let rate = data[toCurr.value.toLowerCase()];
+    // // console.log(rate);
+    // let finalAmount = (amtVal * rate).toFixed(2);
+    // msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+    const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
 
     const response = await fetch(URL);
     let data = await response.json();
-    let rate = data[toCurr.value.toLowerCase()];
+    let rate = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
     // console.log(rate);
     let finalAmount = (amtVal * rate).toFixed(2);
     msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
